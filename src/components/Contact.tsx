@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
           from_email: form.email,
           service: serviceName,
           message: form.message || 'Sin mensaje adicional',
-          to_email: 'ericalonso459@gmail.com',
+          to_email: 'frankalonsoabanto1@gmail.com',
         },
         STUDIO_INFO.emailjs.publicKey
       );

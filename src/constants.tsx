@@ -75,8 +75,8 @@ export const STUDIO_INFO = {
   ],
   mapEmbed: 'https://maps.google.com/maps?q=Calle+Bolonia+10,+50008+Zaragoza,+Spain&t=&z=16&ie=UTF8&iwloc=&output=embed',
   emailjs: {
-    serviceId: 'service_7ksctlh',      // ← Reemplazar con tu Service ID de EmailJS
-    templateId: 'template_hkoe7rk',    // ← Reemplazar con tu Template ID de EmailJS
-    publicKey: '1osTZ0AMLp_eU4khc',      // ← Reemplazar con tu Public Key de EmailJS
+    serviceId: 'service_af4x3l5',      // ← Reemplazar con tu Service ID de EmailJS
+    templateId: 'template_8i5k5kj',    // ← Reemplazar con tu Template ID de EmailJS
+    publicKey: 'TQnGeH1eGDyE9CA0o',      // ← Reemplazar con tu Public Key de EmailJS
   }
 };
