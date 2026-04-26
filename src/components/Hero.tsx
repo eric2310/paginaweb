@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
     <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/lifting-portada.jpeg"
+          src="/images/portada.jpeg"
           alt="Alonso Beauty Studio - Especialistas en Uñas"
           className="w-full h-full object-cover opacity-70"
         />
@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
           Tus manos hablan de ti, <span className="italic">hazlas brillar</span>.
         </h1>
         <p className="text-lg md:text-xl text-stone-700 mb-10 max-w-2xl mx-auto font-medium opacity-0 animate-[fadeIn_1s_0.6s_ease-out_forwards]">
-          Bienvenida a Alonso Beauty Studio. Especialistas en manicura y cuidado personal con ese toque dulce que te mereces.
+          Bienvenida a tu espacio de belleza.
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center opacity-0 animate-[fadeIn_1s_0.9s_ease-out_forwards]">
           <a href="#servicios" className="bg-rose-gold text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-rose-900 transition-all shadow-lg transform hover:-translate-y-1">
