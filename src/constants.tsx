@@ -62,7 +62,7 @@ export const SERVICES: Service[] = [
 ];
 
 export const STUDIO_INFO = {
-  name: 'Alonso Beauty Studio',
+  name: 'Frank Alonso Beauty',
   address: 'C. de Bolonia 10, 50008 Zaragoza',
   phone: "+34 675 43 94 31",
   email: 'frankalonsoabanto1@gmail.com',
