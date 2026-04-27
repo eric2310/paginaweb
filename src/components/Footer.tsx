@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 border-b border-stone-800 pb-12">
           <div className="text-center md:text-left">
             <h2 className="text-3xl font-serif font-bold text-white mb-2">
-              Alonso <span className="text-rose-gold">Beauty Studio</span>
+              Frank <span className="text-rose-gold">Alonso Beauty</span>
             </h2>
             <p className="max-w-xs text-sm italic">
               Donde la dulzura se encuentra con la excelencia estética.
