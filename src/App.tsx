@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Contact from './components/Contact';
+import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import ServiceDetail from './components/ServiceDetail';
 
@@ -13,7 +14,7 @@ const ScrollToAnchor = () => {
 
   useEffect(() => {
     if (hash) {
-      const id = hash.replace('#', '');
+      const id = decodeURIComponent(hash.replace('#', ''));
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -67,6 +68,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <Reviews />
       <Contact />
     </>
   );

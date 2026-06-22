@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium uppercase tracking-widest text-stone-600">
           <Link to="/#inicio" className="hover:text-rose-gold transition-colors">Inicio</Link>
           <Link to="/#servicios" className="hover:text-rose-gold transition-colors">Servicios</Link>
+          <Link to="/#resenas" className="hover:text-rose-gold transition-colors">Reseñas</Link>
           <Link to="/#contacto" className="hover:text-rose-gold transition-colors">Contacto</Link>
           <a
             href={STUDIO_INFO.instagram}

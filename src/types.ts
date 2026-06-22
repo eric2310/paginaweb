@@ -21,3 +21,14 @@ export interface ContactForm {
   service: string;
   message: string;
 }
+
+export interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  comment: string;
+  service: string;
+  initials: string;
+  date: string;
+}
+
