@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { STUDIO_INFO, SERVICES } from '../constants';
 import { ContactForm } from '../types';
+import CalBooking from './CalBooking';
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState<ContactForm>({
@@ -15,6 +16,7 @@ const Contact: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState<'calendar' | 'message'>('calendar');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -156,66 +158,104 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-stone-50 p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100">
-            <h3 className="text-3xl font-serif font-bold text-stone-900 mb-6">Pide tu cita</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Nombre</label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
-                    value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Email</label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
-                    value={form.email}
-                    onChange={e => setForm({ ...form, email: e.target.value })}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Servicio de interés</label>
-                <select
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all appearance-none"
-                  value={form.service}
-                  onChange={e => setForm({ ...form, service: e.target.value })}
-                >
-                  <option value="">Selecciona un servicio...</option>
-                  {SERVICES.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Mensaje</label>
-                <textarea
-                  rows={4}
-                  className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
-                  value={form.message}
-                  onChange={e => setForm({ ...form, message: e.target.value })}
-                ></textarea>
-              </div>
-
-              {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
-              )}
-
+          <div className="bg-stone-50 p-6 md:p-10 rounded-3xl shadow-sm border border-stone-100 flex flex-col min-h-[680px]">
+            {/* Pestañas de Selector */}
+            <div className="flex bg-stone-200/50 p-1.5 rounded-2xl mb-8">
               <button
-                type="submit"
-                disabled={sending}
-                className="w-full bg-rose-gold text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-900 transition-all transform hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                type="button"
+                onClick={() => setActiveTab('calendar')}
+                className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 ${
+                  activeTab === 'calendar'
+                    ? 'bg-white text-stone-900 shadow-sm'
+                    : 'text-stone-500 hover:text-stone-850'
+                }`}
               >
-                {sending ? 'Enviando...' : 'Enviar Solicitud'}
+                📅 Reservar Online
               </button>
-            </form>
+              <button
+                type="button"
+                onClick={() => setActiveTab('message')}
+                className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 ${
+                  activeTab === 'message'
+                    ? 'bg-white text-stone-900 shadow-sm'
+                    : 'text-stone-500 hover:text-stone-850'
+                }`}
+              >
+                ✉️ Dejar Mensaje
+              </button>
+            </div>
+
+            {activeTab === 'calendar' ? (
+              <div className="flex-1 flex flex-col">
+                <h3 className="text-3xl font-serif font-bold text-stone-900 mb-2">Elige tu cita</h3>
+                <p className="text-stone-500 text-sm mb-6">Selecciona el tratamiento, día y hora. Confirmación inmediata.</p>
+                <div className="flex-1">
+                  <CalBooking />
+                </div>
+              </div>
+            ) : (
+              <div>
+                <h3 className="text-3xl font-serif font-bold text-stone-900 mb-6">Dejar Mensaje</h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Nombre</label>
+                      <input
+                        type="text"
+                        required
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
+                        value={form.name}
+                        onChange={e => setForm({ ...form, name: e.target.value })}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Email</label>
+                      <input
+                        type="email"
+                        required
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
+                        value={form.email}
+                        onChange={e => setForm({ ...form, email: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Servicio de interés</label>
+                    <select
+                      className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all appearance-none"
+                      value={form.service}
+                      onChange={e => setForm({ ...form, service: e.target.value })}
+                    >
+                      <option value="">Selecciona un servicio...</option>
+                      {SERVICES.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Mensaje</label>
+                    <textarea
+                      rows={4}
+                      className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-gold/20 focus:border-rose-gold transition-all"
+                      value={form.message}
+                      onChange={e => setForm({ ...form, message: e.target.value })}
+                    ></textarea>
+                  </div>
+
+                  {error && (
+                    <p className="text-red-500 text-sm text-center">{error}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="w-full bg-rose-gold text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-900 transition-all transform hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  >
+                    {sending ? 'Enviando...' : 'Enviar Solicitud'}
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>
