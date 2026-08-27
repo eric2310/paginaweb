@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import ServiceDetail from './components/ServiceDetail';
+import { Analytics } from '@vercel/analytics/react';
 
 const ScrollToAnchor = () => {
   const { hash } = useLocation();
@@ -87,6 +88,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
+        <Analytics />
       </div>
     </Router>
   );
