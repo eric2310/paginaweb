@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
           to="/#contacto"
           className="bg-rose-gold text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-rose-900 transition-all shadow-md"
         >
-          Citarse
+          Solicitar Cita
         </Link>
       </div>
     </nav>
